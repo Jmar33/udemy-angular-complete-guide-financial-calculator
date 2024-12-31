@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { InvestmentSerivce } from '../investment.service';
 
 @Component({
@@ -13,8 +13,9 @@ export class InvestmentResultsComponent {
 
   private investmentService = inject(InvestmentSerivce);
 
-  get results(){
-    return this.investmentService.resultData;
-  }
+  results = computed(() => this.investmentService.resultData());
+  // or instead of computed function we can use this.investmentService.resultData.asReadonly()
+  
+  
 
 }
